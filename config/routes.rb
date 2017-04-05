@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'cards/new'
+
+  get 'cards/create'
+
   get 'card_products/new'
 
   get 'card_products/create'
