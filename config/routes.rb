@@ -1,15 +1,13 @@
 Rails.application.routes.draw do
-  get 'transactions/new'
+  get 'webhooks/new'
 
-  get 'transactions/create'
+  resources :users, only: [:new, :create]
+
+  get 'transactions/new'
 
   get 'cards/new'
 
-  get 'cards/create'
-
   get 'card_products/new'
-
-  get 'card_products/create'
 
   root 'users#new'
 
