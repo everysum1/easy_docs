@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'card_products/new'
+
+  get 'card_products/create'
+
   get 'users/new'
 
   root 'wizard_pages#createUser'
