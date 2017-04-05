@@ -1,26 +1,95 @@
 module Adapter
   require 'rest-client'
 
-  class Marqeta
-    @base_url = ENV['BASE_URL']
-    @headers = {
-       :content_type => 'application/json',
-      :accept => 'application/json',
-      :Authorization => "#{ENV['APP_TOKEN']} #{ENV['MASTER_TOKEN']}"
-    }
+  class MarqetaAdapter
 
-    def url 
-      p '*' * 50
-      p @base_url
-      p '*' * 50
+    def initialize
+      @base_url = "#{ENV['BASE_URL']}"
+      @headers = {
+        :content_type => :json,
+        :accept => :json,
+        :Authorization => "Basic #{ENV['APP_TOKEN']}:#{ENV['MASTER_TOKEN']}"
+      }
     end
 
-    def new_user
-      RestClient.post(@base_url, {}, @headers)
+    def test_endpoint(endpoint)
+      RestClient::Request.execute({
+        method: :get,
+        url: @base_url + endpoint,
+        user: ENV['APP_TOKEN'],
+        password: ENV['MASTER_TOKEN']
+      })
+    end 
+
+    def create_user
+      RestClient::Request.execute({
+        method: :post,
+        url: @base_url + "users",
+        payload: {
+          first_name: Faker::GameOfThrones.character
+        }.to_json,
+        user: ENV['APP_TOKEN'],
+        password: ENV['MASTER_TOKEN']
+      })
     end
+
+    def create_card_product
+      RestClient::Request.execute({
+        method: :post,
+        url: @base_url + "cardproducts",
+        payload: {
+          start_date: Date.today,
+          name: Faker::Hipster.words(2).join
+        }.to_json,
+        user: ENV['APP_TOKEN'],
+        password: ENV['MASTER_TOKEN']
+      })
+    end
+
+    def create_card(user, card_product)
+      RestClient::Request.execute({
+        method: :post,
+        url: @base_url + "cards",
+        payload: {
+          user_token: user,
+          card_product_token: card_product
+        }.to_json,
+        user: ENV['APP_TOKEN'],
+        password: ENV['MASTER_TOKEN']
+      })
+    end
+
+    def create_transaction(card)
+      RestClient::Request.execute({
+        method: :post,
+        url: @base_url + "simulate/authorization",
+        payload: {
+          card_token: card
+        }.to_json,
+        user: ENV['APP_TOKEN'],
+        password: ENV['MASTER_TOKEN']
+      })
+    end
+
   end
 
-  class TwilioWrapper
+  class TwilioAdapter
+
+    def initialize
+  
+    end
+
+    def test_endpoint(endpoint)
+      ap "^" * 50
+      ap @base_url + endpoint
+      ap "^" * 50
+      RestClient::Request.execute({
+        method: :get,
+        url: @base_url + endpoint,
+        user: ENV['APP_TOKEN'],
+        password: ENV['MASTER_TOKEN']
+      })
+    end
 
   end
 end
