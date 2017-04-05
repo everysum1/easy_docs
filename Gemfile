@@ -35,6 +35,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'dotenv-rails'
 gem 'rest-client', '~> 1.7.3'
 gem 'faker'
+gem 'awesome_print'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
