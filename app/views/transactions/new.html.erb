@@ -1,5 +1,15 @@
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
+    <h2>Congratulations, you've created a card ...</h2>
+    <p>User: <%= session[:user][:first_name] %>
+    <p>Card Number(PAN): <%= session[:card]['pan'] %></p>
+    <p>Expiration: <%= session[:card]['expiration'] %></p>
+    <p>CVV: <%= session[:card]['cvv_number'] %></p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
     <h1>Create a Transaction</h1>
   </div>
 </div>
