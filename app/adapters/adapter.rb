@@ -21,13 +21,56 @@ module Adapter
       })
     end 
     
-    def create_card_product
+    def create_funding
+      RestClient::Request.execute({
+        method: :post,
+        url: @base_url + 'fundingsources/program',
+        payload: {
+          name: 'Unlimited Funds'
+        }.to_json,
+        user: ENV['APP_TOKEN'],
+        password: ENV['MASTER_TOKEN'],
+        headers: {
+          content_type: :json,
+          accept: :json
+        }
+      })
+    end
+
+    def create_card_product(funding)
+
       RestClient::Request.execute({
         method: :post,
         url: @base_url + "cardproducts",
         payload: {
           start_date: Date.today,
-          name: Faker::Hipster.words(2).join(' ')
+          name: Faker::Hipster.words(2).join(' '),
+          active: true,
+          config: {
+            fulfillment: {
+              payment_instrument: "VIRTUAL_PAN"
+            },
+            poi: {
+              other: {
+                allow: true
+              },
+              ecommerce: true
+            },
+            transaction_controls: {
+              allow_gpa_auth: true,
+              disable_avs: true
+            },
+            card_life_cycle: {
+              activate_upon_issue: true
+            },
+            jit_funding: {
+              program_funding_source: {
+                enabled: true,
+                funding_source_token: funding,
+                refunds_destination: 'PROGRAM_FUNDING_SOURCE'
+              }
+            }
+          }
         }.to_json,
         user: ENV['APP_TOKEN'],
         password: ENV['MASTER_TOKEN'], 
@@ -73,12 +116,14 @@ module Adapter
       })
     end
 
-    def create_transaction(card)
+    def create_transaction(card, amount)
       RestClient::Request.execute({
         method: :post,
         url: @base_url + "simulate/authorization",
         payload: {
-          card_token: card
+          card_token: card, 
+          amount: amount,
+          mid: '1234567890'
         }.to_json,
         user: ENV['APP_TOKEN'],
         password: ENV['MASTER_TOKEN'],
