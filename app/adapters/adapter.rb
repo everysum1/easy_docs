@@ -20,6 +20,23 @@ module Adapter
         password: ENV['MASTER_TOKEN']
       })
     end 
+    
+    def create_card_product
+      RestClient::Request.execute({
+        method: :post,
+        url: @base_url + "cardproducts",
+        payload: {
+          start_date: Date.today,
+          name: Faker::Hipster.words(2).join(' ')
+        }.to_json,
+        user: ENV['APP_TOKEN'],
+        password: ENV['MASTER_TOKEN'], 
+        headers: {
+          content_type: :json,
+          accept: :json
+        }
+      })
+    end
 
     def create_user
       RestClient::Request.execute({
@@ -29,33 +46,30 @@ module Adapter
           first_name: Faker::GameOfThrones.character
         }.to_json,
         user: ENV['APP_TOKEN'],
-        password: ENV['MASTER_TOKEN']
+        password: ENV['MASTER_TOKEN'],
+        headers: {
+          content_type: :json,
+          accept: :json
+        }
       })
     end
 
-    def create_card_product
+    def create_card(user_token, card_product_token)
+      ap user_token
+      ap card_product_token
       RestClient::Request.execute({
         method: :post,
-        url: @base_url + "cardproducts",
+        url: @base_url + "cards?show_cvv_number=true&show_pan=true",
         payload: {
-          start_date: Date.today,
-          name: Faker::Hipster.words(2).join
+          user_token: user_token,
+          card_product_token: card_product_token
         }.to_json,
         user: ENV['APP_TOKEN'],
-        password: ENV['MASTER_TOKEN']
-      })
-    end
-
-    def create_card(user, card_product)
-      RestClient::Request.execute({
-        method: :post,
-        url: @base_url + "cards",
-        payload: {
-          user_token: user,
-          card_product_token: card_product
-        }.to_json,
-        user: ENV['APP_TOKEN'],
-        password: ENV['MASTER_TOKEN']
+        password: ENV['MASTER_TOKEN'],
+        headers: {
+          content_type: :json,
+          accept: :json
+        }
       })
     end
 
@@ -67,7 +81,11 @@ module Adapter
           card_token: card
         }.to_json,
         user: ENV['APP_TOKEN'],
-        password: ENV['MASTER_TOKEN']
+        password: ENV['MASTER_TOKEN'],
+        headers: {
+          content_type: :json,
+          accept: :json
+        }
       })
     end
 
