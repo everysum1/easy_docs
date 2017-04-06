@@ -8,3 +8,20 @@
     <p>Transaction Status: <%= session[:transaction]['state'] %></p>
   </div>
 </div>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <h1>Add a Webhook...</h1>
+    <p>Get notified the minute a transaction comes through</p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@webhook) do |f| %>
+      <%= f.label :phone %>
+      <%= f.text_field :phone %>
+
+      <%= f.submit "Add Webhook", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
