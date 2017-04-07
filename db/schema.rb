@@ -61,6 +61,7 @@ ActiveRecord::Schema.define(version: 20170407064727) do
   end
 
   create_table "webhooks", force: :cascade do |t|
+    t.string   "phone"
     t.string   "url"
     t.string   "user"
     t.string   "password"
