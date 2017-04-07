@@ -1,2 +1,28 @@
-<h1>Webhooks#new</h1>
-<p>Find me in app/views/webhooks/new.html.erb</p>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <h2>Your transaction was a success! </h2>
+    <p>User: <%= session[:user][:first_name] %></p>
+    <p>Card: <%= session[:card]['pan'] %></p>
+    <p>Amount: $<%= session[:transaction]['request_amount'] %></p>
+    <p>Status: <%= session[:transaction]['state'] %></p>
+    <p>Note: <%= session[:transaction]['response']['memo']%></p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <h1>Add a Webhook</h1>
+    <p>Get notified immediately when a transaction goes through</p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@webhook) do |f| %>
+      <%= f.label :phone %>
+      <%= f.text_field :phone %>
+
+      <%= f.submit "Add Webhook", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
