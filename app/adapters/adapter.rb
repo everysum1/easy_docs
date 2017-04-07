@@ -26,7 +26,8 @@ module Adapter
         method: :post,
         url: @base_url + 'fundingsources/program',
         payload: {
-          name: 'Unlimited Funds'
+          name: 'Unlimited Funds',
+          active: true
         }.to_json,
         user: ENV['APP_TOKEN'],
         password: ENV['MASTER_TOKEN'],
@@ -97,9 +98,26 @@ module Adapter
       })
     end
 
+    def fund_user(user_token, funding_token)
+      RestClient::Request.execute({
+        method: :post,
+        url: @base_url + "gpaorders",
+        payload: {
+          user_token: "#{user_token}",
+          amount: "1000",
+          currency_code: "840",
+          funding_source_token: "#{funding_token}"
+        }.to_json,
+        user: ENV['APP_TOKEN'],
+        password: ENV['MASTER_TOKEN'],
+        headers: {
+          content_type: :json,
+          accept: :json
+        }
+      })
+    end
+
     def create_card(user_token, card_product_token)
-      ap user_token
-      ap card_product_token
       RestClient::Request.execute({
         method: :post,
         url: @base_url + "cards?show_cvv_number=true&show_pan=true",
