@@ -154,34 +154,23 @@ module Adapter
 
   end
 
-  class TwilioAdapter
+  class Twilio
 
     def initialize
-     
     end
 
-    def send_message(phone_number, alert_message)
+    def send_message(webhook)
       twilio_number = ENV['TWILIO_NUMBER']
       client = Twilio::REST::Client.new ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN']
 
+      alert_message = "Your Marqeta account has just received an authorization request for #{webhook[:amount]} from #{webhook[:user]} at #{webhook[:merchant]} located in #{webhook[:city]},#{webhook[:state]}, processed over the #{webhook[:network]} network. It is currently in #{webhook[:status]} state."
+
       client.messages.create(
         from: twilio_number,
-        to:   phone_number,
+        to:   params[:phone],
         body: alert_message,
       )
     end
-
-    def test_endpoint(endpoint)
-      ap "^" * 50
-      ap @base_url + endpoint
-      ap "^" * 50
-      RestClient::Request.execute({
-        method: :get,
-        url: @base_url + endpoint,
-        user: ENV['APP_TOKEN'],
-        password: ENV['MASTER_TOKEN']
-      })
-    end
-
   end
+
 end
