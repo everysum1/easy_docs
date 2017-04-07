@@ -8,11 +8,11 @@ class TransactionsController < ApplicationController
     amount = params['transaction']['amount']
     card = session[:card]['token']
 
-    transaction = JSON.parse(@marqeta.create_transaction(amount, card))
-    session[:transaction] = transaction
+    trans_obj = JSON.parse(@marqeta.create_transaction(amount, card))
+    session[:transaction] = trans_obj['transaction']
 
     ap '$' * 50
-    ap 'NEW CARD'
+    ap 'NEW TRANSACTION'
     ap session[:transaction]
     ap '$' * 50
 
