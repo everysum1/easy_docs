@@ -4,6 +4,12 @@ class UsersController < ApplicationController
     @marqeta = Adapter::MarqetaAdapter.new
 
     funding = JSON.parse(@marqeta.create_funding)
+    session[:funding] = funding 
+    
+    ap '@' * 50
+    ap 'NEW FUNDING'
+    ap funding
+    ap '@' * 50
 
     # CREATE CARD PRODUCT
     data = JSON.parse(@marqeta.create_card_product(funding['token']))
@@ -13,7 +19,7 @@ class UsersController < ApplicationController
     }
     
     ap '*' * 50
-    ap 'CARD PRODUCT'
+    ap 'NEW CARD PRODUCT'
     ap session[:card_product]
     ap '*' * 50
     
@@ -32,13 +38,8 @@ class UsersController < ApplicationController
     ap session[:user]
     ap '^' * 50
     # @user = User.parse_user(data)
-    redirect_to new_card_path
-   
-      # REDIRECT & PASS USER/CARDPRODUCT INFO TO NEXT VIEW
-
-  
-      # RELOAD PAGE
     
-
+    # REDIRECT & PASS USER/CARDPRODUCT INFO TO NEXT VIEW
+    redirect_to new_card_path
   end
 end
