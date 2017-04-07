@@ -37,6 +37,7 @@ gem 'rest-client', '~> 1.7.3'
 gem 'faker'
 gem 'awesome_print'
 gem 'activerecord-session_store'
+gem 'twilio-ruby'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
