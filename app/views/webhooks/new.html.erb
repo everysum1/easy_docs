@@ -1,10 +1,17 @@
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
     <h2>Your transaction was a success! </h2>
-    <p>User: <%= session[:user][:first_name] %></p>
+    <p>User: <%= @user %></p>
     <p>Card: <%= session[:card]['pan'] %></p>
-    <p>Amount: $<%= session[:transaction]['request_amount'] %></p>
-    <p>Status: <%= session[:transaction]['state'] %></p>
+    <p>Network: <%= @network %></p>
+
+
+    <p>Merchant: <%= @merchant %></p>
+    <p>City: <%= @city %></p>
+    <p>State: $<%= @state %></p>
+
+    <p>Amount: $<%= @amount %></p>
+    <p>Status: <%= @status %></p>
     <p>Note: <%= session[:transaction]['response']['memo']%></p>
   </div>
 </div>
@@ -21,6 +28,14 @@
     <%= form_for(@webhook) do |f| %>
       <%= f.label :phone %>
       <%= f.text_field :phone %>
+
+      <%= f.hidden_field(:amount, value: @amount) %>
+      <%= f.hidden_field(:user, value: @user) %>
+      <%= f.hidden_field(:merchant, value: @merchant) %>
+      <%= f.hidden_field(:city, value: @city) %>
+      <%= f.hidden_field(:state, value: @state) %>
+      <%= f.hidden_field(:network, value: @network) %>
+      <%= f.hidden_field(:status, value: @status) %>
 
       <%= f.submit "Add Webhook", class: "btn btn-primary" %>
     <% end %>
