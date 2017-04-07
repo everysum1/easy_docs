@@ -8,9 +8,9 @@
 
     <p>Merchant: <%= @merchant %></p>
     <p>City: <%= @city %></p>
-    <p>State: $<%= @state %></p>
+    <p>State: <%= @state %></p>
 
-    <p>Amount: $<%= @amount %></p>
+    <p>Amount: $<%= @amount %>0</p>
     <p>Status: <%= @status %></p>
     <p>Note: <%= session[:transaction]['response']['memo']%></p>
   </div>
