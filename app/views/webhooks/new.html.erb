@@ -12,15 +12,15 @@
           </div>
 
           <div class="main-trans">
-            <p>User: <%= @user %></p>
-            <p>Card: <%= @card %></p>
-            <p>Network: <%= @network %></p>
-            <p>Merchant: <%= @merchant %></p>
-            <p>City: <%= @city %></p>
-            <p>State: <%= @state %></p>
-            <p>Amount: $<%= @amount %>0</p>
-            <p>Status: <%= @status %></p>
-            <p>Note: <%= session[:transaction]['response']['memo']%></p>
+            <p><b>User:</b> <%= @user %></p>
+            <p><b>Card:</b> <%= @card %></p>
+            <p><b>Network:</b> <%= @network %></p>
+            <p><b>Merchant:</b> <%= @merchant %></p>
+            <p><b>City:</b> <%= @city %></p>
+            <p><b>State:</b> <%= @state %></p>
+            <p><b>Amount:</b> $<%= @amount %>0</p>
+            <p><b>Status:</b> <%= @status %></p>
+            <p><b>Note:</b> <%= session[:transaction]['response']['memo']%></p>
           </div>
 
           <div class="transaction-img">
