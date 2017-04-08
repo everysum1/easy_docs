@@ -1,33 +1,47 @@
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <h2>Your transaction was a success! </h2>
-    <p>User: <%= @user %></p>
-    <p>Card: <%= session[:card]['pan'] %></p>
-    <p>Network: <%= @network %></p>
+<div class="jumbotron marqeta-main">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <h1>Your transaction is now <%= @status %> </h1>
+
+      <div class="terminal-img">
+        <%= image_tag 'terminal', size: '300x300'  %><%= image_tag 'arrow', size: '200x100' %>
+      </div>
+
+      <div class="transaction">
+        <p>User: <%= @user %></p>
+        <p>Card: <%= @card %></p>
+        <p>Network: <%= @network %></p>
 
 
-    <p>Merchant: <%= @merchant %></p>
-    <p>City: <%= @city %></p>
-    <p>State: <%= @state %></p>
+        <p>Merchant: <%= @merchant %></p>
+        <p>City: <%= @city %></p>
+        <p>State: <%= @state %></p>
 
-    <p>Amount: $<%= @amount %>0</p>
-    <p>Status: <%= @status %></p>
-    <p>Note: <%= session[:transaction]['response']['memo']%></p>
+        <p>Amount: $<%= @amount %>0</p>
+        <p>Status: <%= @status %></p>
+        <p>Note: <%= session[:transaction]['response']['memo']%></p>
+      </div>
+
+      <div class="account-image">
+        <%= image_tag 'arrow', size: '200x100'%><%= image_tag 'card-acct', size: '300x300' %>
+      </div>
+
+    </div>
   </div>
 </div>
 
 <div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <h1>Add a Webhook</h1>
+  <div class="col-md-6 col-md-offset-4">
+    <h1 class="action-call">Let's add a Webhook</h1>
     <p>Get notified immediately when a transaction goes through</p>
   </div>
 </div>
 
 <div class="row">
-  <div class="col-md-6 col-md-offset-3">
+  <div class="col-md-5 col-md-offset-5">
     <%= form_for(@webhook) do |f| %>
       <%= f.label :phone %>
-      <%= f.text_field :phone %>
+      <%= f.text_field :phone, required: true %>
 
       <%= f.hidden_field(:amount, value: @amount) %>
       <%= f.hidden_field(:user, value: @user) %>
@@ -39,5 +53,15 @@
 
       <%= f.submit "Add Webhook", class: "btn btn-primary" %>
     <% end %>
+  </div>
+</div>
+
+<br>
+<br>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-4">
+    <p>This will send a POST request to <span>/webhooks</span>
+    with the following body:</p>
   </div>
 </div>
