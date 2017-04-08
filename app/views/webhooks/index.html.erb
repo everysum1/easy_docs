@@ -1,17 +1,20 @@
 <div class="jumbotron marqeta-main">
   <div class="row">
     <div class="col-md-6 col-md-offset-3">
-      <h1>Check your phone!</h1>
-      <p>See your transaction details</p>
-
+      <h1 class="center">Check your phone!</h1>
+      <p class="center">to see your transaction details...</p>
+      
+      <br>
+      <br>
+      
       <p>You should see the following message:</p> 
       
-      <%= "Your Marqeta account has just received an authorization request for $#{@amount}0 from #{@user} at #{@merchant} located in #{@city},#{@state}, processed over the #{@network} network. It is currently in #{@status} state." %>
+      <p><i><%= "Your Marqeta account has just received an authorization request for $#{@amount}0 from #{@user} at #{@merchant} located in #{@city},#{@state}, processed over the #{@network} network. It is currently in #{@status} state." %></i></p>
 
       <br>
       <br>
       
-      <p>Find out what else you can do with <a href="https://www.marqeta.com/api/docs/Vh2dCRwAAMsAF3sg/webhooks-overview">webhooks</a>.</p>
+      <p class="center">Find out what else you can do with <a href="https://www.marqeta.com/api/docs/Vh2dCRwAAMsAF3sg/webhooks-overview">webhooks</a>.</p>
     </div>
   </div>
 </div>
