@@ -1,27 +1,24 @@
 class TransactionsController < ApplicationController
   def new
     @transaction = Transaction.new
-    @user = session[:user]
-    funding = session[:funding]
-    @marqeta = Adapter::MarqetaAdapter.new
-    data = JSON.parse(@marqeta.fund_user(@user[:token], funding['token']))
-    ap session[:funding][:amount] = data['amount']
-    ap '@' * 50
-    ap 'NEW USER FUNDED'
-    ap data
-    ap '@' * 50
+    @card_number = session[:card]['pan'].gsub(/(.{4})/, '\1 ')
+    @exp = session[:card]['expiration']
+
   end
 
   def create
-    # CREATE TRANSACTION W/ CARD TOKEN
     @marqeta = Adapter::MarqetaAdapter.new
+    amount = params['transaction']['amount']
     card = session[:card]['token']
-    data = JSON.parse(@marqeta.create_transaction(card, params['transaction']['amount']))
-    session[:transaction] = data['transaction']
-    ap '!' * 50
-    ap data
-    ap '!' * 50
-    # REDIRECT TO WEBHOOK PAGE & PASS CARD TOKEN
+
+    trans_obj = JSON.parse(@marqeta.create_transaction(amount, card))
+    session[:transaction] = trans_obj['transaction']
+
+    ap '$' * 50
+    ap 'NEW TRANSACTION'
+    ap session[:transaction]
+    ap '$' * 50
+
     redirect_to new_webhook_path
   end
 end

@@ -8,9 +8,11 @@ class CardsController < ApplicationController
     @marqeta = Adapter::MarqetaAdapter.new
     data = JSON.parse(@marqeta.create_card(
       session[:user][:token], 
-      session[:card_product][:token]
+      session[:card_product]['token']
     ))
     session[:card] = data
+    session[:card]['expiration'] = data['expiration'].insert(2, '/')
+    
     ap '#' * 50
     ap 'NEW CARD'
     ap session[:card]

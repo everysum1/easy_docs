@@ -1,22 +1,52 @@
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <h2>We've created a card product for you...</h2>
-    <p>Name: <%= session[:card_product][:name] %></p>
-    <p>Funding: JIT Managed</p>
+<div class="jumbotron marqeta-main">
+  <div class="row">
+    <div class="col-md-9 col-md-offset-2">
+
+      <div class="title col-md-2">
+        <h1>Welcome to <span id="easy-docs">EASY DOCS</span></h1>
+        <h2>We've created an account for you at Marqeta </h2>
+        <p>and added some funding to help get you started...</p>
+      </div>
+
+      <div class="account col-md-5">
+        <div class="bank-img">
+          <%= image_tag 'bank-icon.png', size: "300x300" %>
+        </div>
+
+        <div class="account-details col-md-12">
+          <p>Account Name: <%= @name %></p>
+          <p>Account Number: <%= @account[0..22] %></p>
+          <p>Funding: JIT Managed</p>
+        </div>
+      </div>
+
+    </div>
   </div>
 </div>
 
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <h1>Create a User</h1>
+<div class="action-call center">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <h1 >Now let's create a User</h1>
+        <p>so we can start using the Marqeta platform</p>
+      </div>
   </div>
-</div>
+
+  <div class="row">
+    <div class="col-md-2 col-md-offset-5">
+      <%= form_for(@user) do |f| %>
+        <%= f.submit "Create User", class: "btn btn-lg" %>
+      <% end %>
+    </div>
+  </div>
+</div>  
+
+<br>
+<br>
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-    <%= form_for(@user) do |f| %>
-   
-      <%= f.submit "Create User", class: "btn btn-primary" %>
-    <% end %>
+    <p>This will send a POST request to <span>/users</span>
+    with the following body:</p>
   </div>
 </div>

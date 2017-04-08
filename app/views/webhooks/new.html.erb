@@ -1,27 +1,73 @@
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <h2>Congratulations, you've created a new Transaction ...</h2>
-    <p>User: <%= session[:user][:first_name] %>
-    <p>Card Number(PAN): <%= session[:card]['pan'] %></p>
-    <p>Transaction: <%= session[:transaction]['token'] %></p>
-    <p>Transaction Amount: <%= session[:transaction]['amount'] %></p>
-    <p>Transaction Status: <%= session[:transaction]['state'] %></p>
+<div class="jumbotron marqeta-main">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2 vertical-center">
+      <h1 class="center">Success!! Your transaction is now <%= @status %> </h1>
+
+      <br>
+      <br>
+      <div class="transaction">
+        <div class="trans-wrapper">
+          <div class="transaction-img">
+            <%= image_tag 'terminal', size: '180x200'  %><%= image_tag 'arrow', size: '140x75' %>
+          </div>
+
+          <div class="main-trans">
+            <p><b>User:</b> <%= @user %></p>
+            <p><b>Card:</b> <%= @card %></p>
+            <p><b>Network:</b> <%= @network %></p>
+            <p><b>Merchant:</b> <%= @merchant %></p>
+            <p><b>City:</b> <%= @city %></p>
+            <p><b>State:</b> <%= @state %></p>
+            <p><b>Amount:</b> $<%= @amount %>0</p>
+            <p><b>Status:</b> <%= @status %></p>
+            <p><b>Note:</b> <%= session[:transaction]['response']['memo']%></p>
+          </div>
+
+          <div class="transaction-img">
+            <%= image_tag 'arrow', size: '140x75'%><%= image_tag 'card-acct', size: '180x200' %>
+          </div>
+        </div>
+      </div>
+
+    </div>
   </div>
 </div>
 
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <h1>Add a Webhook...</h1>
-    <p>Get notified the minute a transaction comes through</p>
+<div class="action-call center">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <div class="action-call">
+        <h1 >Let's add a Webhook</h1>
+        <p>Get notified immediately when a transaction goes through</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <%= form_for(@webhook) do |f| %>
+        <%= f.text_field :phone, placeholder: "Enter your phone number", required: true %>
+
+        <%= f.hidden_field(:amount, value: @amount) %>
+        <%= f.hidden_field(:user, value: @user) %>
+        <%= f.hidden_field(:merchant, value: @merchant) %>
+        <%= f.hidden_field(:city, value: @city) %>
+        <%= f.hidden_field(:state, value: @state) %>
+        <%= f.hidden_field(:network, value: @network) %>
+        <%= f.hidden_field(:status, value: @status) %>
+
+        <%= f.submit "Add Webhook", class: "btn btn-primary" %>
+      <% end %>
+    </div>
   </div>
 </div>
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <%= form_for(@webhook) do |f| %>
-      <%= f.label :phone %>
-      <%= f.text_field :phone %>
 
-      <%= f.submit "Add Webhook", class: "btn btn-primary" %>
-    <% end %>
+<br>
+<br>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-4">
+    <p>This will send a POST request to <span>/webhooks</span>
+    with the following body:</p>
   </div>
 </div>
