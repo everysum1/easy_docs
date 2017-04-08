@@ -72,9 +72,10 @@ body {
       display: inline-block;
     }
     #card {
+      margin: 0 auto;
       margin-top: 4%;
-      padding: 4%;
-      width: 80%;
+      padding: 3% 3% 3% 5%;
+      width: 85%;
       border: 2px solid white;
       border-radius: 20px;
       #title {
@@ -84,16 +85,21 @@ body {
         vertical-align: middle;
       }
       #exp {
-        margin-left: 45%;
+        margin-left: 50%;
+      }
+      #name {
+        font-size: 2.5em;
       }
       #number {
         letter-spacing: 4px;
-        word-spacing: .2em;
+        word-spacing: .5em;
         font-size: 2.9em;
         width: 100%;
       }
       #CVV {
-        margin-left: 55%;
+        padding-right: 7%;
+        float: right;
+        font-size: 1em;
       }
       
     }
