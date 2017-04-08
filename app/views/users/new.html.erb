@@ -8,9 +8,9 @@
         <p>and added some funding to help get you started...</p>
       </div>
 
-      <div class="account side col-md-4">
+      <div class="account col-md-5">
         <div class="bank-img">
-          <%= image_tag 'bank-circle.png', size: "300x300" %>
+          <%= image_tag 'bank-icon.png', size: "300x300" %>
         </div>
 
         <div class="account-details col-md-12">
@@ -24,20 +24,22 @@
   </div>
 </div>
 
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <h1 class="action-call">Now let's create a User</h1>
-    <p>so we can start using the Marqeta platform</p>
+<div class="action-call center">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <h1 >Now let's create a User</h1>
+        <p>so we can start using the Marqeta platform</p>
+      </div>
   </div>
-</div>
 
-<div class="row">
-  <div class="col-md-2 col-md-offset-5">
-    <%= form_for(@user) do |f| %>
-      <%= f.submit "Create User", class: "btn btn-primary" %>
-    <% end %>
+  <div class="row">
+    <div class="col-md-2 col-md-offset-5">
+      <%= form_for(@user) do |f| %>
+        <%= f.submit "Create User", class: "btn btn-lg" %>
+      <% end %>
+    </div>
   </div>
-</div>
+</div>  
 
 <br>
 <br>
