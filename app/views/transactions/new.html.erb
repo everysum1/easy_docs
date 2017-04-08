@@ -6,7 +6,7 @@
       <div id="card">
         <p><%= image_tag 'marqeta-logo' %> <span id="title">MARQETA</span></p>
         <p><span id="number"><%= @card_number %></span></p>
-        <p>Exp: <%= @exp %></p>
+        <p id="exp">Exp: <%= @exp %></p>
         <p><%= session[:user][:first_name] %>  <span id="CVV">CVV: <%= session[:card]['cvv_number'] %></span></p>
       </div>
 
@@ -14,20 +14,22 @@
   </div>
 </div>
 
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <h1 class="action-call">Now let's create a Transaction</h1>
+<div class="action-call center">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <h1>Now let's create a Transaction</h1>
+    </div>
   </div>
-</div>
 
-<div class="row">
-  <div class="col-md-4 col-md-offset-4">
-    <%= form_for(@transaction) do |f| %>
-      <%= f.label :amount %>
-      <%= f.text_field :amount, required: true %>
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4">
+      <%= form_for(@transaction) do |f| %>
+        <%= f.label :amount %>
+        <%= f.text_field :amount, required: true %>
 
-      <%= f.submit "Create Transaction", class: "btn btn-primary" %>
-    <% end %>
+        <%= f.submit "Create Transaction", class: "btn btn-primary" %>
+      <% end %>
+    </div>
   </div>
 </div>
 
