@@ -14,3 +14,48 @@
  
  @import "bootstrap-sprockets";
  @import "bootstrap";
+
+body {
+  font-family: 'Dosis', sans-serif;
+  
+  .marqeta-main {
+    background: linear-gradient(to bottom right, #151340, #6F1CCD);
+    color: #FFF;
+    .title {
+      width: 60%;
+      display: inline-block;
+    }
+    .side {
+      width: 38%;
+      display: inline-block;
+    }
+    #card {
+      margin-top: 4%;
+      padding: 5%;
+      width: 80%;
+      border: 2px solid white;
+      border-radius: 20px;
+      #title {
+        font-size: 3em;
+        padding-left: 4%;
+        padding-top: 8%;
+        text-align: center;
+      }
+      #number {
+        font-size: 2em;
+      }
+      #CVV {
+        margin-left: 40%;
+      }
+    }
+  }
+
+  .action-call {
+    h1 {
+      color: #791DDC;
+    }
+    p {
+      font-size: 1.3em;
+    }
+  }
+}
