@@ -1,13 +1,13 @@
 <div class="jumbotron marqeta-main">
   <div class="row">
-    <div class="col-md-6 col-md-offset-3">
+    <div class="col-md-8 col-md-offset-2">
 
-      <div class="title col-md-2">
+      <div class="title col-md-2 center">
         <h1>Congratulations!!!</h1>
         <h2>You've just created your first user ...</h2>
       </div>
 
-      <div id="user side col-md-4">
+      <div id="user">
         <div class="user-img">
           <%= image_tag 'user-beard', size: "200x300" %>
         </div>
@@ -22,19 +22,21 @@
   </div>
 </div>
 
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <h1 class="action-call">Now let's make a card</h1>
-    <p>for <%= session[:user][:first_name] %> so they can make purchases...</p>
+<div class="action-call center">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <h1>Now let's make a card</h1>
+      <p>so <%= session[:user][:first_name] %> can start making purchases...</p>
+    </div>
   </div>
-</div>
 
-<div class="row">
-  <div class="col-md-2 col-md-offset-5">
-    <%= form_for(@card) do |f| %>
-      <%= f.submit "Create Card", class: "btn btn-primary" %>
-    <% end %>
-  </div>
+  <div class="row">
+    <div class="col-md-2 col-md-offset-5">
+      <%= form_for(@card) do |f| %>
+        <%= f.submit "Create Card", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+</div>
 </div>
 
 <br>
