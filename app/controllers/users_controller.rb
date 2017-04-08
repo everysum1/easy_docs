@@ -6,6 +6,7 @@ class UsersController < ApplicationController
     
     funding = JSON.parse(@marqeta.create_funding)
     session[:funding] = funding
+    @account = session[:card_product]['token']
 
     ap '*' * 50
     ap 'NEW FUNDING SOURCE'
@@ -13,10 +14,9 @@ class UsersController < ApplicationController
     ap '*' * 50
 
     card_product = JSON.parse(@marqeta.create_card_product(funding['token']))
-    session[:card_product] = {
-      name: card_product['name'],
-      token: card_product['token']
-    }
+    session[:card_product] = card_product
+    session[:card_product]['name'] = session[:card_product]['name'].split(' ').map { |n| n.capitalize! }.join(' ')
+    @name = session[:card_product]['name']
 
     ap '!' * 50
     ap 'NEW CARD PRODUCT'

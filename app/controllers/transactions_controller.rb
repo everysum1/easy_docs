@@ -1,6 +1,9 @@
 class TransactionsController < ApplicationController
   def new
     @transaction = Transaction.new
+    @card_number = session[:card]['pan'].gsub(/(.{4})/, '\1 ')
+    @exp = session[:card]['expiration']
+
   end
 
   def create
