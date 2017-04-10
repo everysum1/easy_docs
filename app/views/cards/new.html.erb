@@ -42,9 +42,19 @@
 <br>
 <br>
 
+<div class="col-md-12  divider">
+  <h3>SEE WHAT'S GOING ON BEHIND THE SCENES...</h3>
+</div>
+
 <div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <p>This will send a POST request to <span>/cards</span>
+  <div class="col-md-6 col-md-offset-3 info">
+    <h4>CREATE A CARD</h4>
+    <p>This will send a <span class="code">POST</span> request to <span class="code">/cards</span>
     with the following body:</p>
+    <pre><p class="code">{ 
+       "user_token": "**USER TOKEN FROM PREVIOUS STEP**",
+       "card_product_token": "**CARD PRODUCT TOKEN FROM PREVIOUS STEP**" 
+}</p></pre>
+    <p>The code box above provides a JSON-formatted message body for creating a card. Note that this card will be active upon issue because of the card product's configuration.</p>
   </div>
 </div>

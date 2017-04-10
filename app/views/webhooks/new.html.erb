@@ -65,9 +65,38 @@
 <br>
 <br>
 
+<div class="col-md-12  divider">
+  <h3>SEE WHAT'S GOING ON BEHIND THE SCENES...</h3>
+</div>
+
 <div class="row">
-  <div class="col-md-6 col-md-offset-4">
-    <p>This will send a POST request to <span>/webhooks</span>
+  <div class="col-md-6 col-md-offset-3 info">
+    <h4>CREATE A WEBHOOK</h4>
+    <p>This will send a <span class="code">POST</span> request to <span class="code">/webhooks</span>
     with the following body:</p>
+    <pre><p class="code">{
+    "amount": "10",
+    "mid": "123456890",
+    "card_token": "**CARD TOKEN FROM PREVIOUS STEP**",
+    "card_acceptor": {
+      "name": "Sample Merchant",
+      "address": "123 Elm",
+      "city": "Jamestown",
+      "state": "CA",
+      "zip": "94608"
+    },
+    "webhook": {
+      "endpoint": "**URL FOR RECEIVING NOTIFICATIONS**",
+      "username": "**MY USER NAME**",
+      "password": "**MY PASSWORD**"
+    }
+}</p></pre>
+    <p>In this step will you simulate another authorization transaction, but this time with a webhook added to the request. The webhook instructs the Marqeta platform to push an event notification of the transaction to a specified URL.</p>
+
+    <p>
+    In order to receive and inspect the event notification, you will need to provide a URL that can accept the notification. (Runscope provides a free online service that lets you receive and inspect HTTP requests. To use this service, go to http://requestb.in, create a bin for receiving requests, and copy its URL into the body of your transaction request, for example: "endpoint": "http://requestb.in/t73gn0t7").</p>
+
+    <p>As before, a MID is provided in the mid field, and you will need to replace the value of the card_token field with the token of the card you created previously.
+    </p>
   </div>
 </div>

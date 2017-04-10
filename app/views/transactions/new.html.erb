@@ -36,9 +36,20 @@
 <br>
 <br>
 
+<div class="col-md-12  divider">
+  <h3>SEE WHAT'S GOING ON BEHIND THE SCENES...</h3>
+</div>
+
 <div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <p>This will send a POST request to <span>/simulate/authorizations</span>
+  <div class="col-md-6 col-md-offset-3 info">
+    <h4>CREATE A TRANSACTION</h4>
+    <p>This will send a <span class="code">POST</span> request to <span class="code">/simulate/transaction</span>
     with the following body:</p>
+    <pre><p class="code">{
+    "amount": "**YOUR AMOUNT**",
+    "mid": "123456890",
+    "card_token": "**CARD TOKEN FROM PREVIOUS STEP**"
+}</p></pre>
+    <p>The code box above provides a JSON-formatted message body for creating a card. Note that this card will be active upon issue because of the card product's configuration.</p>
   </div>
 </div>
