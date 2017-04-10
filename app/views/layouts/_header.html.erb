@@ -8,7 +8,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/"><%= image_tag('marqeta-logo') %><span>MARQETA</span></a>
+      <a class="navbar-brand" href="/"><%= image_tag('marqeta-logo', id: "logo", size: "80x40") %><span id="brand">MARQETA</span></a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -16,7 +16,7 @@
   
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">SOLUTIONS</a>
+          <a href="#" class="dropdown-toggle menu" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">SOLUTIONS</a>
           <ul class="dropdown-menu">
             <li><a href="#">DELIVERY</a></li>
             <li><a href="#">LEND</a></li>
@@ -25,17 +25,17 @@
             <li><a href="#">VIRTUAL</a></li>
           </ul>
         </li>
-        <li><a href="#">FEATURES</a></li>
+        <li><a href="#" class="menu" >FEATURES</a></li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">API DOCS</a>
+          <a href="#" class="dropdown-toggle menu" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">API DOCS</a>
           <ul class="dropdown-menu">
             <li><a href="#">REFERENCE DOCS</a></li>
             <li><a href="#">GUIDES</a></li>
             <li><a href="#">API EXPLORER</a></li>
           </ul>
         </li>
-        <li><a href="#">ABOUT</a></li>
-        <li><a id="signin" href="#">SIGN IN</a></li>
+        <li><a href="#" class="menu">ABOUT</a></li>
+        <li><a id="signin" class="menu" href="#">SIGN IN</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
